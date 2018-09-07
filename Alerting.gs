@@ -127,7 +127,11 @@ function createAlertObject(a) {
     "recipients" : a[11],
     "subject" : a[12],
     "intro" : a[13]
+  };
+  alert.slack = {
+    "webhook" : a[14]
   }
+  
   return(alert);
 }
 
@@ -207,6 +211,7 @@ function isAlertValidNow(checks) {
 function sendAlert(alert) {
   if(alert.results.total > 0) { alert.email.table = convertResultsToHTMLTable(alert.results); };
   emailAlert(alert.name, alert.results, alert.email);
+  sendToSlack(alert.name, alert.results,alert.email,alert.slack.webhook)
   setScriptProperty(alert.name, new Date());
 }
 
@@ -233,6 +238,7 @@ function emailAlert(name, results, email) {
     email.body = "<p>" + email.intro + "</p><p>Total: " + results.total
   }
   MailApp.sendEmail(email.recipients, email.subject, email.body, {"htmlBody" : email.body});
+  
 }
 
 /**
