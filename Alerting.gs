@@ -1,6 +1,7 @@
 /**************************************************************************
 *  Realtime Alerting for Google Analytics
-*  Version: 1.0
+*  Version: 1.1
+*  Authors: Dan Gilbert - @dangilbertnow & Ed Guccione @triweasel
 **************************************************************************/
 
 /**
@@ -228,7 +229,12 @@ function getRealtimeResponse(viewId, metrics, options) {
   return(Analytics.Data.Realtime.get(viewId, metrics, options));
 }
 
-/* Send alert to recipients and update last alerted timestamp */
+/* Send email alert to recipients and update last alerted timestamp 
+* @param {string} Name of the alert 
+* @param {object} Results object including totals and rows
+* @param {object} Email details including addresses, subject and HTML formatted table where required
+*/
+
 function emailAlert(name, results, email) {
   if(!email.subject) { email.subject = name + " - Alert threshold exeeded"; };
   if(!email.intro) { email.intro = "Threshold exeeded for alert: " + name; };
