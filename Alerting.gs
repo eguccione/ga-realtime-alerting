@@ -212,7 +212,7 @@ function isAlertValidNow(checks) {
 function sendAlert(alert) {
   if(alert.results.total > 0) { alert.email.table = convertResultsToHTMLTable(alert.results); };
   emailAlert(alert.name, alert.results, alert.email);
-  sendToSlack(alert.name, alert.results,alert.email,alert.slack.webhook)
+  if(alert.slack.webhook) { sendToSlack(alert.name, alert.results,alert.email,alert.slack.webhook)}
   setScriptProperty(alert.name, new Date());
 }
 
