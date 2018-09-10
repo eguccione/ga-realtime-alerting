@@ -31,7 +31,7 @@ You could be clever and make your thresholds dynamic based on the latest GA info
 
 Make a copy of the **script template**
 
-[From this read-only version of the script](https://docs.google.com/spreadsheets/d/1wTwNSAeoSuTU-mVEPqHATPMVWCzvLxs4zsRtn9G1Bz0/edit?usp=sharing)
+[From this read-only version of the script](https://docs.google.com/spreadsheets/d/1QzOctaMfRdD2PE7q72CCq2kkOMKbjFVwTrZNK9dXimc/edit?usp=sharing)
 
 This will hopefully be up to date with the latest version of the scripts but it's worth checking!
 
