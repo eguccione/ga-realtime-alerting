@@ -1,7 +1,7 @@
 /**************************************************************************
 *  Realtime Alerting for Google Analytics
-*  Version: 1.0
-*  Authors: Dan Gilbert @dangilbertnow & Ed Guccione @triweasel
+*  Version: 1.1
+*  Authors: Dan Gilbert - @dangilbertnow & Ed Guccione @triweasel
 **************************************************************************/
 
 /**
@@ -19,8 +19,10 @@ SEND_ANALYTICS_DATA = true;
 * Reads alert configurations from sheet, checks each alert against the Realtime API,
 * and sends email notifications if valid alerts are breached.
 * If alert checking fails an email is sent to alert recipients.
+* checks if there's a new version of the alerting script on github
 */
 function realtimeMonitoring() {
+  checkScriptVersion()
   var alerts = getAlerts();
   alerts.forEach(function (alert) {
     try {
@@ -129,7 +131,11 @@ function createAlertObject(a) {
     "recipients" : a[11],
     "subject" : a[12],
     "intro" : a[13]
+  };
+  alert.slack = {
+    "webhook" : a[14]
   }
+  
   return(alert);
 }
 
@@ -209,6 +215,7 @@ function isAlertValidNow(checks) {
 function sendAlert(alert) {
   if(alert.results.total > 0) { alert.email.table = convertResultsToHTMLTable(alert.results); };
   emailAlert(alert.name, alert.results, alert.email);
+  if(alert.slack.webhook) { sendToSlack(alert.name, alert.results,alert.email,alert.slack.webhook)}
   setScriptProperty(alert.name, new Date());
 }
 
@@ -225,7 +232,12 @@ function getRealtimeResponse(viewId, metrics, options) {
   return(Analytics.Data.Realtime.get(viewId, metrics, options));
 }
 
-/* Send alert to recipients and update last alerted timestamp */
+/* Send email alert to recipients and update last alerted timestamp 
+* @param {string} Name of the alert 
+* @param {object} Results object including totals and rows
+* @param {object} Email details including addresses, subject and HTML formatted table where required
+*/
+
 function emailAlert(name, results, email) {
   if(!email.subject) { email.subject = name + " - Alert threshold exeeded"; };
   if(!email.intro) { email.intro = "Threshold exeeded for alert: " + name; };
@@ -235,6 +247,7 @@ function emailAlert(name, results, email) {
     email.body = "<p>" + email.intro + "</p><p>Total: " + results.total
   }
   MailApp.sendEmail(email.recipients, email.subject, email.body, {"htmlBody" : email.body});
+  
 }
 
 /**

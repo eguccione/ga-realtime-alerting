@@ -1,7 +1,7 @@
 /**************************************************************************
 *  Realtime Alerting for Google Analytics
-*  Version: 1.0
-*  Authors: Dan Gilbert @dangilbertnow & Ed Guccione @triweasel
+*  Version: 1.1
+*  Authors: Dan Gilbert - @dangilbertnow & Ed Guccione @triweasel
 **************************************************************************/
 
 /**
@@ -23,7 +23,8 @@ CONFIG_LABELS = [
   ["Alert Expiry Time (Minutes)"],
   ["Email Recipients"],
   ["Email Subject"],
-  ["Email Intro Text"]
+  ["Email Intro Text"],
+  ["Slack Webhook"]
 ];
 
 CONFIG_EXAMPLE = [
@@ -40,7 +41,8 @@ CONFIG_EXAMPLE = [
   ["1440"],
   [""],
   ["Alert threshold breached"],
-  ["Alert intro paragraph"]
+  ["Alert intro paragraph"],
+  [""]
 ];
 
 CONFIG_NOTES = [
@@ -57,7 +59,8 @@ CONFIG_NOTES = [
   [""],
   ["Comma separated list of email addresses."],
   [""],
-  [""]
+  [""],
+  ["A Slackwebhook URL. Instructions for set up here: api.slack.com/incoming-webhooks"]
 ];
 
 CONFIG_COLOURS_DARK = [
@@ -72,6 +75,7 @@ CONFIG_COLOURS_DARK = [
   ["#741b47"],
   ["#741b47"],
   ["#741b47"],
+  ["#0b5394"],
   ["#0b5394"],
   ["#0b5394"],
   ["#0b5394"]
@@ -89,6 +93,7 @@ CONFIG_COLOURS_LIGHT = [
   ["#ead1dc"],
   ["#ead1dc"],
   ["#ead1dc"],
+  ["#cfe2f3"],
   ["#cfe2f3"],
   ["#cfe2f3"],
   ["#cfe2f3"]
