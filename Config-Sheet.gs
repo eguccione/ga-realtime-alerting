@@ -135,6 +135,7 @@ function addHeadings(sheet) {
   .setNotes(CONFIG_NOTES)
   .setBackgrounds(CONFIG_COLOURS_DARK)
   .setFontColor("#f3f3f3");
+  sheet.setColumnWidth(1, 200);
 }
 
 function addAlert(sheet) {
@@ -151,7 +152,6 @@ function addAlert(sheet) {
           .setWrap(true);
   
   setValidation(sheet, alertColumn);
-  sheet.autoResizeColumns(1, alertColumn);
 }
 
 function setValidation(sheet, column) {
