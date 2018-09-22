@@ -35,9 +35,8 @@ Make a copy of the **script template**
 
 This will hopefully be up to date with the latest version of the scripts but it's worth checking!
 
-
 [When you've made your copy you need to set up the script - jump to the script set up guide](#script-setup-guide)
-=======
+
 or **copy scripts from GitHub** 
 
 To do this create a brand new Google Sheet and go to **Tools > Script editor from the menu**.
@@ -65,7 +64,9 @@ Save your script (and name it)
 
 # Script setup guide 
 
-Go to **Resources > Advanced Google services.**
+Go to **Tools > Script Editor**
+
+then **Resources > Advanced Google services.**
 
 ![ScreenShot](https://lh3.googleusercontent.com/8PsiEn4304XjE0xPnoQGTaXeR3gEOk5dzPRaA75OySjR1PpYFpNEQV3FOpHK2AvUZJLBJTKPdPaFyhj_HgBl1oHPbegkbe5-HRNOQm9s19uXQgfmbh9YDweBTTO18wa8C1cGJxmi)
 
@@ -103,9 +104,11 @@ The script is now setup and you can close the Script Editor tab.
 
 Refresh the browser - This generates the App menus 
 
+You can either edit the example Alert provided in the sheet or
+
 Go to **GA Realtime > Create Configuration Sheet** in the menu
 
-The first time you run the script you will be prompted to grant some permissions (text depends on what you named your script).
+The first time you run the script (by creating new alerts or config sheet or checking your alerts) you will be prompted to grant some permissions (text depends on what you named your script).
 
 <img src="https://lh3.googleusercontent.com/84NuhfAUvBNTUu_BX1bJgo9OsIBHnwhp30wPMxkTNVCkFM6BEu43FGVrE3KexQRPxS90lG3xxvYCEqjm3eELCMBg0XcwZg3J6e8Jz7hvP5bhZiD01AxlC53N_w80EmlorEjokLI3" width="332">
 
@@ -127,3 +130,18 @@ To add another alert go to **GA Realtime > Add new alert** from the menu.
 To check your alerts will run successfully go to **GA Realtime > Check Alert Configurations**
 
 To schedule your alerts go to **GA Realtime > Schedule Alerting** and selected a checking frequency
+
+## Collecting anonymous usage data
+
+We use Google Analytics to understand how many users/sheets are using this script and how often.  To do this, a random anonymous client ID is generated for each sheet and stored in script properties. No sensitive data about the user or spreadsheet will be sent to Google Analytics.  
+
+To diable sending analytics data you can change the 'SEND_ANALYTICS_DATA' variable (line 15: Alerting.gs) to false. 
+
+## Authors
+
+* **Ed Guccione** - *Initial work* - @triweasel
+* **Dan Gilbert** - *Initial work* - @dangilbertnow
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
