@@ -18,8 +18,10 @@ USER_EMAIL = Session.getActiveUser().getEmail()
 * Reads alert configurations from sheet, checks each alert against the Realtime API,
 * and sends email notifications if valid alerts are breached.
 * If alert checking fails an email is sent to alert recipients.
+* checks if there's a new version of the alerting script on github
 */
 function realtimeMonitoring() {
+  checkScriptVersion()
   var alerts = getAlerts();
   alerts.forEach(function (alert) {
     try {
